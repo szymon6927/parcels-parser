@@ -17,3 +17,18 @@ class ParcelsParser():
         04.01.2019
         Company: ADGROUP
         """
+
+    def get_column_name(self):
+        return self.column_name
+
+    def get_data(self):
+        return self.data
+
+    def get_result(self):
+        return self.result
+
+    def set_file(self, file):
+        self.file = file
+
+    def set_column_name(self, column_name):
+        self.column_name = column_name

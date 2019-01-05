@@ -8,3 +8,12 @@ class ParcelsParser():
         self.column_name = column_name
         self.data = []
         self.result = []
+
+    def __repr__(self):
+        return """
+        Recruitment task
+        Author: Szymon Miks
+        miks.szymon@gmail.com
+        04.01.2019
+        Company: ADGROUP
+        """

@@ -1,3 +1,5 @@
+import pandas as pd
+
 class ParcelsParser():
     def __init__(self, file, column_name):
         """
@@ -32,3 +34,18 @@ class ParcelsParser():
 
     def set_column_name(self, column_name):
         self.column_name = column_name
+
+    def get_identifiers_data(self):
+        """Get values form cadastral_parcel_identifier column
+        and save it to self.data.
+        Before this check if file and column exists.
+        """
+        try:
+            df = pd.read_csv(self.file, sep='\t')
+            if self.column_name in df.columns:
+                identifiers_list = df[self.column_name].tolist()
+                self.data = identifiers_list
+            else:
+                raise KeyError("cadastral_parcel_identifier not in file")
+        except FileNotFoundError:
+            print("Error: File not found or inccorect filename")

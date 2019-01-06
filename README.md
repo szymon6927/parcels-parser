@@ -18,7 +18,7 @@ Default arguments are:
 --column cadastral_parcel_identifier
 ```
 
-After gitclone to start, go to application directroy:
+After git clone to start, go to application directory:
 ```
 $ cd parcels-parser
 ```
@@ -35,7 +35,7 @@ $ python run.py --filename YOUR_FILE --column YOUR_COLUMN_NAME
 
 ## Running the tests
 
-To run test go to application directory
+To run tests go to application directory
 ```
 $ cd parcels-parser
 ```

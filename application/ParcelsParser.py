@@ -53,7 +53,7 @@ class ParcelsParser():
             else:
                 raise KeyError("cadastral_parcel_identifier not in file")
         except FileNotFoundError:
-            print("Error: File not found or inccorect filename")
+            print("Error: File not found or incorrect filename")
 
     def get_province_county_commune(self, segment):
         """Eg. segment = 101010, is separeted into three smaller two digit chunks

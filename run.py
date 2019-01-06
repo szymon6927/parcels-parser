@@ -12,9 +12,9 @@ from application.ParcelsParser import ParcelsParser
 
 def arg_parser():
     description = """Application for decoding 
-    county_code, commune_code, commune_type, district_number, parcel_number
-    based on cadastral parcel identifier.
-    Importat column names in the file are required
+    county code, commune code, commune type, district number, parcel number
+    based on cadastral parcel identifiers.
+    Important! Column names in the file are required
     """
 
     parser = argparse.ArgumentParser(description=description,

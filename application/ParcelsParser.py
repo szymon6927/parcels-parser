@@ -1,4 +1,6 @@
 import pandas as pd
+import re
+
 
 class ParcelsParser():
     def __init__(self, file, column_name):
@@ -49,3 +51,36 @@ class ParcelsParser():
                 raise KeyError("cadastral_parcel_identifier not in file")
         except FileNotFoundError:
             print("Error: File not found or inccorect filename")
+
+    def get_province_county_commune(self, segment):
+        """Eg. segment = 101010, is separeted into three smaller two digit chunks
+        :param segment: string with digit only
+        :return: extracted values like province_code, county_code, commune_code from param
+        """
+        province_code = segment[:2]
+        county_code = segment[2:4].replace('O', '0').lstrip("0")
+        commune_code = segment[4:6].lstrip("0")  # remove leading
+
+        return province_code, county_code, commune_code
+
+    def extract_data(self):
+        """Extract values with regex usage and helper function
+        and save it to temporary dict
+        then append dict to self.result
+        """
+        for identifiers in self.data:
+            temp = {}
+            first_segment = re.search('\d(.*?)(?=\-|\_)', identifiers).group(0)
+
+            province_code, county_code, commune_code = self.get_province_county_commune(first_segment)
+            comunne_type = re.search('(?<=\_|\-)(.*?)(?=\.|\,)', identifiers).group(0)
+            district_number = re.search('(?<=\.|\,)(.*?)(?=\.)', identifiers).group(0).replace('0', '')
+            parcel_number = re.search('(?!.*\.).+', identifiers).group(0).replace('\\', '/').replace('//', '/')
+
+            temp['province_code'] = province_code
+            temp['county_code'] = county_code
+            temp['commune_code'] = commune_code
+            temp['commune_type'] = comunne_type
+            temp['district_number'] = district_number
+            temp['parcel_number'] = parcel_number
+            self.result.append(temp)

@@ -84,3 +84,16 @@ class ParcelsParser():
             temp['district_number'] = district_number
             temp['parcel_number'] = parcel_number
             self.result.append(temp)
+
+    def print_result(self):
+        [print(f'For ID "{item_data}" extracted data is: \n {item_result} \n')
+         for item_data, item_result in zip(self.data, self.result)]
+
+    def beautify_print(self):
+        for item_data, item_result in zip(self.data, self.result):
+            print(f'For ID: {item_data} \n')
+            print("Extracted data:")
+            [print(f'{key}: {value}') for key, value in item_result.items()]
+
+            divider = ''.join('-' for _ in range(80))
+            print(divider)

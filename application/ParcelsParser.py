@@ -22,6 +22,9 @@ class ParcelsParser():
         Company: ADGROUP
         """
 
+    def get_file(self):
+        return self.file
+
     def get_column_name(self):
         return self.column_name
 
